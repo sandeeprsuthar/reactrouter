@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { ProfilePage } from "./components/ProfilePage";
+import { ProfileDetailPage } from "./components/ProfileDetailPage";
+import { FeedPage } from "./components/Feed";
+import { HomePage } from "./components/HomePage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <ul>
+          <li>
+            <Link to="/">To Home</Link>
+          </li>
+          <li>
+            <Link to="/profile">To Profile</Link>
+          </li>
+          <li>
+            <Link to="/profile/sachin" exact>
+              To Sachin T's Profile
+            </Link>
+          </li>
+          <li>
+            <Link to="/feed">To Feed</Link>
+          </li>
+        </ul>
+        <Routes>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/profile" component={ProfilePage} />
+          <Route path="/profile/:username" component={ProfileDetailPage} />
+          <Route path="/feed" component={FeedPage} />
+        </Routes>
+      </Router>
     </div>
   );
 }
